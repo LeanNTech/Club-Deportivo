@@ -21,76 +21,104 @@ namespace ProyectoClubHorizonteV._
 		private string nombre;
 		private string apellido;
 		private int matricula;
-		private DateTime HorarioAtencion { get; set; }
-		private List<Actividad> ActividadesAcargo { get; set; }
+		private DateTime horarioAtencion;
+		private List<Actividad> actividades;
 		
 		
 		
 		public Profesor(string nom, string ape, int matri, DateTime hoaten)
 		{
-			nombre = nom;
-			apellido = ape;
-			matricula = matri;
+			Nombre = nom;
+			Apellido = ape;
+			Matricula = matri;
 			HorarioAtencion = hoaten;
-			ActividadesAcargo = new List<Actividad>();
-		}
-		
-		public string Nombre 
-		{
-			
-			get { return nombre;}
-			
-		}
-		
-		public string Apellido 
-		{
-			
-			get { return apellido;}
-			
+			actividades = new List<Actividad>();
 		}
 		
 		
 		
-		public int Matricula 
-		{
-			
-			get { return matricula;}
-			
-		}
+		// PROPIEDADES
+		
+		public string Nombre
+        {
+            get { return nombre; }
+            set
+            {
+                if (String.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("El nombre no puede estar vacío.");
+                nombre = value;
+            }
+        }
+
+        public string Apellido
+        {
+            get { return apellido; }
+            set
+            {
+                if (String.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("El apellido no puede estar vacío.");
+                apellido = value;
+            }
+        }
+
+        public int Matricula
+        {
+            get { return matricula; }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("La matrícula debe ser mayor a cero.");
+                matricula = value;
+            }
+        }
+
+        public string HorarioAtencion
+        {
+            get { return horarioAtencion; }
+            set { horarioAtencion = value; }
+        }
+
+        public List<Actividad> Actividades
+        {
+            get { return new List<Actividad>(actividades); }
+        }
+        
+        
+        // METODOS
+		
+		private void AgregarActividad(Actividad actividad)
+        {
+            if (actividad == null)
+                throw new ArgumentNullException("actividad");
+
+            if (!actividades.Contains(actividad))
+                actividades.Add(actividad);
+        }
+        
+        
+		private void QuitarActividad(Actividad actividad)
+        {
+            if (actividad != null)
+                actividades.Remove(actividad);
+        }
 		
 		
-		public void ActualizarDatos (DateTime horarioAtencion)
-		{
-			
-			HorarioAtencion = horarioAtencion;
-			
-		}
-		
-		public int CantidadAlumnosAcargo()
-		{
-			int total = 0;
-			
-			foreach(Actividad a in ActividadesAcargo)
-			{
-				
-				total += a.CantidadDeInscriptos();
-				
-			}
-			return total;
-			
-		}
-		
-		public int CantidadActividadesACargo(){
-			
-			return ActividadesAcargo.Count;
-			
-		}
+		public int CantidadAlumnosTotales()
+        {
+            int total = 0;
+
+            foreach (Actividad actividad in actividades)
+                total += actividad.CantidadInscriptos;
+
+            return total;
+        }
 		
 		
 		public override string ToString()
-		{
-			return string.Format("[Profesor Nombre: {0}, Apellido: {1}, Matricula: {2}]", nombre, apellido, matricula);
-		}
+        {
+            return Matricula + " - " + Nombre + " " + Apellido +
+                   " | Actividades: " + actividades.Count;
+        }
  
 		
 		

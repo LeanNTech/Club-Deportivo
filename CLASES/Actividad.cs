@@ -16,108 +16,175 @@ namespace ProyectoClubHorizonteV._
 	/// </summary>
 	public class Actividad
 	{
-		private string nombre { get; set; }
-		private int edadMinima { get; set; }
-		private int edadMaxima { get; set; }
-		private int cupoMaximo { get; set; }
-		private string dia { get; set; }
-		private TimeSpan horarioInicio { get; set; }
-		private TimeSpan horarioFin { get; set; }
-		private double arancelMensual { get; set; }
+		private string nombre;
+		private int edadMinima; 
+		private int edadMaxima;
+		private int cupoMaximo;
+		private string dia;
+		private DateTime horario;
+		private double arancelMensual;
 		private double descuentoSocios = 0.15;
-		private Profesor Profesor { get; set; }
-		public List<Inscripcion> Inscripciones { get; set; }
+		private Profesor profesor;
+		public List<Inscripcion> inscripciones;
 		
 		
-		public Actividad(string nom, int edadM, int edadMax, int cupoMax, string di, TimeSpan horaIni, TimeSpan horaFini, double arancel, Profesor profesor)
+		public Actividad(string nombre, int edadMinima, int edadMaxima, int cupoMaximo, string dia, DateTime horario, double arancelMensual, Profesor profesor)
 		{
-			nombre = nom;
-			edadMinima = edadM;
-			cupoMaximo = edadMax;
-			dia = di;
-			horarioInicio = horaIni;
-			horarioFin = horaFini;
-			arancelMensual = arancel;
-			Profesor = profesor;
-			Inscripciones = new List<Inscripcion>();
+			Nombre = nombre;
+            EdadMinima = edadMinima;
+            EdadMaxima = edadMaxima;
+            CupoMaximo = cupoMaximo;
+            Dia = dia;
+            Horario = horario;
+            ArancelMensual = arancelMensual;
+            this.profesor = profesor;
+            inscripciones = new List<Inscripcion>();
 			
 		}
 		
 		
-		public bool TieneCupoDisponible()
-		{
-			
-			return Inscripciones.Count < cupoMaximo;
-		}
-		
-		public bool PermiteEdad(int edad)
-		{
-			
-			return edad>= edadMinima && edad <= edadMaxima;
-			
-		}
+		// METODOS
 		
 		
-		public bool SeSuperponeCon(Actividad otra)
-		{
-			if (!string.Equals(dia, otra.dia, StringComparison.OrdinalIgnoreCase))
-			{
-				
-				return false;
-			}
-			return horarioInicio < otra.horarioFin && otra.horarioInicio < horarioFin;
-		}
+		 public int CantidadInscriptos
+        {
+            get { return inscripciones.Count; }
+        }
+
+		 
+		 
+        public bool TieneCupoDisponible()
+        {
+            return inscripciones.Count < cupoMaximo;
+        }
+
+        public bool PermiteEdad(Inscripto alumno)
+        {
+            if (alumno == null)
+                return false;
+
+            return alumno.Edad >= edadMinima && alumno.Edad <= edadMaxima;
+        }
+
+        public bool MismoHorario(Actividad otra)
+        {
+            if (otra == null)
+                return false;
+
+            return String.Equals(Dia.Trim(), otra.Dia.Trim(),
+                                 StringComparison.OrdinalIgnoreCase)
+                   && Horario.TimeOfDay == otra.Horario.TimeOfDay;
+        }
+
+        private void AsignarProfesor(Profesor nuevoProfesor)
+        {
+            profesor = nuevoProfesor;
+        }
+
+        private void AgregarInscripcion(Inscripcion inscripcion)
+        {
+            if (inscripcion == null)
+                throw new ArgumentNullException("inscripcion");
+
+            if (!inscripciones.Contains(inscripcion))
+                inscripciones.Add(inscripcion);
+        }
+
+        private void QuitarInscripcion(Inscripcion inscripcion)
+        {
+            if (inscripcion != null)
+                inscripciones.Remove(inscripcion);
+        }
 		
-		
-		public int CantidadDeInscriptos()
-		{
-			
-			return Inscripciones.Count;
-			
-		}
-		
-		public void ActualizarDatos (string nom, int? edadMini, int? edadMax, int? cupoMax, string di, TimeSpan? horaIni, TimeSpan? horaFini, double? arancel)
-		{
-			
-			
-			if (!string.IsNullOrEmpty(nom))
-			{
-				nombre = nom;
-				
-			}
-			if(edadMini.HasValue)
-			{
-				edadMinima = edadMini.Value;
-				
-			}
-			if(edadMax.HasValue)
-			{
-				edadMaxima = edadMax.Value;
-				
-			}
-			if(!string.IsNullOrEmpty(dia))
-			{
-				dia = di;
-				
-			}
-			if(horaIni.HasValue)
-			{
-				horarioInicio = horaIni.Value;
-				
-			}
-			if(horaFini.HasValue)
-			{
-				horarioFin = horaFini.Value;
-				
-			}
-			if(arancel.HasValue)
-			{
-				arancelMensual = arancel.Value;
-				
-			}
-			
-			
-		}
+        
+        // PROPIEDADES
+        
+        
+	    public string Nombre
+        {
+            get { return nombre; }
+            set
+            {
+                if (String.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("El nombre de la actividad no puede estar vacío.");
+                nombre = value;
+            }
+        }
+
+        public int EdadMinima
+        {
+            get { return edadMinima; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("La edad mínima no puede ser negativa.");
+                edadMinima = value;
+            }
+        }
+
+        public int EdadMaxima
+        {
+            get { return edadMaxima; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("La edad máxima no puede ser negativa.");
+                edadMaxima = value;
+            }
+        }
+
+        public int CupoMaximo
+        {
+            get { return cupoMaximo; }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("El cupo máximo debe ser mayor a cero.");
+                if (inscripciones != null && value < inscripciones.Count)
+                    throw new InvalidOperationException(
+                        "El cupo no puede ser menor que la cantidad actual de inscriptos.");
+                cupoMaximo = value;
+            }
+        }
+
+        public string Dia
+        {
+            get { return dia; }
+            set
+            {
+                if (String.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("El día no puede estar vacío.");
+                dia = value;
+            }
+        }
+
+        public DateTime Horario
+        {
+            get { return horario; }
+            set { horario = value; }
+        }
+
+        public double ArancelMensual
+        {
+            get { return arancelMensual; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("El arancel no puede ser negativo.");
+                arancelMensual = value;
+            }
+        }
+        
+        
+        public Profesor Profesor
+        {
+            get { return profesor; }
+        }
+
+        public List<Inscripcion> Inscripciones
+        {
+            get { return new List<Inscripcion>(inscripciones); }
+        }
 		
 	}
 }
