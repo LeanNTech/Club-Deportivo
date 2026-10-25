@@ -8,17 +8,15 @@ namespace ProyectoClubHorizonteV._
         protected string nombre;
         protected string apellido;
         protected string direccion;
-        protected int edad;
         protected DateTime fechaNacimiento;
         protected int dni;
         protected List<Inscripcion> inscripciones;
 
-        public Inscripto(string nombre, string apellido, string direccion, int edad, DateTime fechaNacimiento, int dni)
+        public Inscripto(string nombre, string apellido, string direccion,DateTime fechaNacimiento, int dni)
         {
             this.nombre = nombre;
             this.apellido = apellido;
             this.direccion = direccion;
-            this.edad = edad;
             this.fechaNacimiento = fechaNacimiento;
             this.dni = dni;
             this.inscripciones = new List<Inscripcion>();
@@ -30,8 +28,6 @@ namespace ProyectoClubHorizonteV._
         	get { return apellido; } }
         public string Direccion { 
         	get { return direccion; } }
-        public int Edad { 
-        	get { return edad; } }
         public DateTime FechaNacimiento { 
         	get { return fechaNacimiento; } }
         public int Dni { 
@@ -45,8 +41,6 @@ namespace ProyectoClubHorizonteV._
         	this.apellido = apellido; }
         public void setDireccion(string direccion) { 
         	this.direccion = direccion; }
-        public void setEdad(int edad) { 
-        	this.edad = edad; }
         public void setFechaNacimiento(DateTime fechaNacimiento) { 
         	this.fechaNacimiento = fechaNacimiento; }
 
