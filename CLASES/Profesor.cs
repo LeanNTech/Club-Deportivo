@@ -13,33 +13,33 @@ using System.Collections.Generic;
 
 namespace ProyectoClubHorizonteV._
 {
-	/// <summary>
-	/// Description of Profesor.
-	/// </summary>
-	public class Profesor
-	{
-		private string nombre;
-		private string apellido;
-		private int matricula;
-		private DateTime horarioAtencion;
-		private List<Actividad> actividades;
-		
-		
-		
-		public Profesor(string nom, string ape, int matri, DateTime hoaten)
-		{
-			Nombre = nom;
-			Apellido = ape;
-			Matricula = matri;
-			HorarioAtencion = hoaten;
-			actividades = new List<Actividad>();
-		}
-		
-		
-		
-		// PROPIEDADES
-		
-		public string Nombre
+    /// <summary>
+    /// Description of Profesor.
+    /// </summary>
+    public class Profesor
+    {
+        private string nombre;
+        private string apellido;
+        private int matricula;
+        private DateTime horarioAtencion;
+        private List<Actividad> actividades;
+
+
+
+        public Profesor(string nom, string ape, int matri, DateTime hoaten)
+        {
+            Nombre = nom;
+            Apellido = ape;
+            Matricula = matri;
+            HorarioAtencion = hoaten;
+            actividades = new List<Actividad>();
+        }
+
+
+
+        // PROPIEDADES
+
+        public string Nombre
         {
             get { return nombre; }
             set
@@ -72,7 +72,7 @@ namespace ProyectoClubHorizonteV._
             }
         }
 
-        public string HorarioAtencion
+        public DateTime HorarioAtencion
         {
             get { return horarioAtencion; }
             set { horarioAtencion = value; }
@@ -82,11 +82,11 @@ namespace ProyectoClubHorizonteV._
         {
             get { return new List<Actividad>(actividades); }
         }
-        
-        
+
+
         // METODOS
-		
-		private void AgregarActividad(Actividad actividad)
+
+        public void AgregarActividad(Actividad actividad)
         {
             if (actividad == null)
                 throw new ArgumentNullException("actividad");
@@ -94,16 +94,16 @@ namespace ProyectoClubHorizonteV._
             if (!actividades.Contains(actividad))
                 actividades.Add(actividad);
         }
-        
-        
-		private void QuitarActividad(Actividad actividad)
+
+
+        private void QuitarActividad(Actividad actividad)
         {
             if (actividad != null)
                 actividades.Remove(actividad);
         }
-		
-		
-		public int CantidadAlumnosTotales()
+
+
+        public int CantidadAlumnosTotales()
         {
             int total = 0;
 
@@ -112,16 +112,16 @@ namespace ProyectoClubHorizonteV._
 
             return total;
         }
-		
-		
-		public override string ToString()
+
+
+        public override string ToString()
         {
             return Matricula + " - " + Nombre + " " + Apellido +
                    " | Actividades: " + actividades.Count;
         }
- 
-		
-		
-		
-	}
+
+
+
+
+    }
 }

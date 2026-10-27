@@ -3,3 +3,5 @@ C:\Users\niko\Documents\SharpDevelop Projects\Tp_Club_Deportivo_Grupo_1\Tp_Club_
 C:\Users\niko\Documents\SharpDevelop Projects\Tp_Club_Deportivo_Grupo_1\Tp_Club_Deportivo_Grupo_1\obj\Debug\Tp_Club_Deportivo_Grupo_1.csprojResolveAssemblyReference.cache
 C:\Users\niko\Documents\SharpDevelop Projects\Tp_Club_Deportivo_Grupo_1\Tp_Club_Deportivo_Grupo_1\obj\Debug\Tp_Club_Deportivo_Grupo_1.exe
 C:\Users\niko\Documents\SharpDevelop Projects\Tp_Club_Deportivo_Grupo_1\Tp_Club_Deportivo_Grupo_1\obj\Debug\Tp_Club_Deportivo_Grupo_1.pdb
+C:\Users\niko\Club-Deportivo\obj\Debug\Tp_Club_Deportivo_Grupo_1.exe
+C:\Users\niko\Club-Deportivo\obj\Debug\Tp_Club_Deportivo_Grupo_1.pdb
