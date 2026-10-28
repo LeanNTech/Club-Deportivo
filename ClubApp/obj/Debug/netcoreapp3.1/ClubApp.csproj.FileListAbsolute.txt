@@ -1,0 +1,13 @@
+C:\Users\niko\Club-Deportivo\ClubApp\obj\Debug\netcoreapp3.1\ClubApp.csprojAssemblyReference.cache
+C:\Users\niko\Club-Deportivo\ClubApp\obj\Debug\netcoreapp3.1\ClubApp.AssemblyInfoInputs.cache
+C:\Users\niko\Club-Deportivo\ClubApp\obj\Debug\netcoreapp3.1\ClubApp.AssemblyInfo.cs
+C:\Users\niko\Club-Deportivo\ClubApp\obj\Debug\netcoreapp3.1\ClubApp.csproj.CoreCompileInputs.cache
+C:\Users\niko\Club-Deportivo\ClubApp\bin\Debug\netcoreapp3.1\ClubApp.exe
+C:\Users\niko\Club-Deportivo\ClubApp\bin\Debug\netcoreapp3.1\ClubApp.deps.json
+C:\Users\niko\Club-Deportivo\ClubApp\bin\Debug\netcoreapp3.1\ClubApp.runtimeconfig.json
+C:\Users\niko\Club-Deportivo\ClubApp\bin\Debug\netcoreapp3.1\ClubApp.runtimeconfig.dev.json
+C:\Users\niko\Club-Deportivo\ClubApp\bin\Debug\netcoreapp3.1\ClubApp.dll
+C:\Users\niko\Club-Deportivo\ClubApp\bin\Debug\netcoreapp3.1\ClubApp.pdb
+C:\Users\niko\Club-Deportivo\ClubApp\obj\Debug\netcoreapp3.1\ClubApp.dll
+C:\Users\niko\Club-Deportivo\ClubApp\obj\Debug\netcoreapp3.1\ClubApp.pdb
+C:\Users\niko\Club-Deportivo\ClubApp\obj\Debug\netcoreapp3.1\ClubApp.genruntimeconfig.cache

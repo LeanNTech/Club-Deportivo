@@ -11,26 +11,36 @@ using System.Collections.Generic;
 
 namespace ProyectoClubHorizonteV._
 {
-	/// <summary>
-	/// Description of Actividad.
-	/// </summary>
-	public class Actividad
-	{
-		private string nombre;
-		private int edadMinima; 
-		private int edadMaxima;
-		private int cupoMaximo;
-		private string dia;
-		private DateTime horario;
-		private double arancelMensual;
-		private double descuentoSocios = 0.15;
-		private Profesor profesor;
-		public List<Inscripcion> inscripciones;
-		
-		
-		public Actividad(string nombre, int edadMinima, int edadMaxima, int cupoMaximo, string dia, DateTime horario, double arancelMensual, Profesor profesor)
-		{
-			Nombre = nombre;
+    /// <summary>
+    /// Description of Actividad.
+    /// </summary>
+    public class Actividad
+    {
+        public string nombre;
+        private int edadMinima;
+        private int edadMaxima;
+        private int cupoMaximo;
+        private string dia;
+        private DateTime horario;
+        private double arancelMensual;
+        private double descuentoSocios = 0.15;
+        private Profesor profesor;
+        public List<Inscripcion> inscripciones;
+
+
+        public double DescuentoSocios
+        {
+            get { return descuentoSocios; }
+            set
+            {
+                if (value < 0 || value > 1)
+                    throw new ArgumentException("El descuento debe estar entre 0 y 1 (por ejemplo 0.15 para 15%).");
+                descuentoSocios = value;
+            }
+        }
+        public Actividad(string nombre, int edadMinima, int edadMaxima, int cupoMaximo, string dia, DateTime horario, double arancelMensual, Profesor profesor)
+        {
+            Nombre = nombre;
             EdadMinima = edadMinima;
             EdadMaxima = edadMaxima;
             CupoMaximo = cupoMaximo;
@@ -39,20 +49,20 @@ namespace ProyectoClubHorizonteV._
             ArancelMensual = arancelMensual;
             this.profesor = profesor;
             inscripciones = new List<Inscripcion>();
-			
-		}
-		
-		
-		// METODOS
-		
-		
-		 public int CantidadInscriptos
+
+        }
+
+
+        // METODOS
+
+
+        public int CantidadInscriptos
         {
             get { return inscripciones.Count; }
         }
 
-		 
-		 
+
+
         public bool TieneCupoDisponible()
         {
             return inscripciones.Count < cupoMaximo;
@@ -81,7 +91,7 @@ namespace ProyectoClubHorizonteV._
             profesor = nuevoProfesor;
         }
 
-        private void AgregarInscripcion(Inscripcion inscripcion)
+        public void AgregarInscripcion(Inscripcion inscripcion)
         {
             if (inscripcion == null)
                 throw new ArgumentNullException("inscripcion");
@@ -90,17 +100,17 @@ namespace ProyectoClubHorizonteV._
                 inscripciones.Add(inscripcion);
         }
 
-        private void QuitarInscripcion(Inscripcion inscripcion)
+        public void QuitarInscripcion(Inscripcion inscripcion)
         {
             if (inscripcion != null)
                 inscripciones.Remove(inscripcion);
         }
-		
-        
+
+
         // PROPIEDADES
-        
-        
-	    public string Nombre
+
+
+        public string Nombre
         {
             get { return nombre; }
             set
@@ -174,8 +184,8 @@ namespace ProyectoClubHorizonteV._
                 arancelMensual = value;
             }
         }
-        
-        
+
+
         public Profesor Profesor
         {
             get { return profesor; }
@@ -185,6 +195,6 @@ namespace ProyectoClubHorizonteV._
         {
             get { return new List<Inscripcion>(inscripciones); }
         }
-		
-	}
+
+    }
 }
